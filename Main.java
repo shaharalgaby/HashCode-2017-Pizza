@@ -37,12 +37,12 @@ public class Main {
 		//Handle the input
 		File file = new File(System.getProperty("user.home") + "/Desktop/hashcode/d_big.in");
 		Scanner scan = null;
-		try {
-			scan = new Scanner(file);
-		} catch (FileNotFoundException e) {}
+		try {scan = new Scanner(file);}
+		catch (FileNotFoundException e) {}
 		
 		String s = scan.nextLine();
 		String[] values = s.split(" ");
+		
 		rows = Integer.parseInt(values[0]); 
 		columns = Integer.parseInt(values[1]);
 		min = Integer.parseInt(values[2]);
@@ -51,7 +51,6 @@ public class Main {
 		String[][] pizzaArr = new String[rows][columns];
 		for(int i=0;i<rows;i++)  
 			pizzaArr[i] = scan.nextLine().split("");	
-		
 		pizza = new Pizza();
 		pizza.arr = pizzaArr;
 		
@@ -64,35 +63,32 @@ public class Main {
 		solve();
 	}
 
-	public static void solve(){
+	public static void solve() {
 		while(randomsCommited+1 < rows*columns)  {
 			createNewSlice();
 			//printPizzaStatus();
 		}
 		
+		createOutputFile();
+	}
+	
+	public static void createOutputFile(){
 		Writer writer = null;
-		int score = 0;
-		System.out.println(pizza.slices.size()+"");
-		File file = new File(System.getProperty("user.home") + "/Desktop/D.txt");
-		
+		File file = new File(System.getProperty("user.home") + "/Desktop/D.txt");		
 		try {
-            FileOutputStream is = new FileOutputStream(file);
-            OutputStreamWriter osw = new OutputStreamWriter(is);    
-            Writer w = new BufferedWriter(osw);
-            w.write((pizza.slices.size()+"\n"));
-    		for (Slice slice : pizza.slices) {
-    			score+=slice.M+slice.T;
-    			w.write(""+slice.start.x+" "+slice.start.y+" "+slice.end.x+" "+slice.end.y+"\n");
-    		}
-    		w.close();
-    		osw.close();
-    		is.close();
-        } catch (IOException e) {
-            System.err.println("Problem writing to the file statsTest.txt");
-        }
-		
-
-		System.out.println("Total score is: " + score);
+			FileOutputStream is = new FileOutputStream(file);
+		        OutputStreamWriter osw = new OutputStreamWriter(is);    
+		        Writer w = new BufferedWriter(osw);
+		        w.write((pizza.slices.size()+"\n"));
+		  	for (Slice slice : pizza.slices) {
+				w.write(""+slice.start.x+" "+slice.start.y+" "+slice.end.x+" "+slice.end.y+"\n");
+			}
+			w.close();
+			osw.close();
+			is.close();
+		} catch (IOException e) {
+		    	System.err.println("Problem writing to the file statsTest.txt");
+		}
 	}
 	
 	public static void createNewSlice(){
