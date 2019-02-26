@@ -106,29 +106,27 @@ public class Main {
 		boolean shouldContinue = true;
 		while(shouldContinue) {
 
-			boolean canAddPiece = false;
 			
 			if(false){}
 			else if(addRowDown(slice)){}
 			else if(addRowUp(slice)){}
 			else if(addColumnRight(slice)){}
 			else if(addColumnLeft(slice)){}
-
-
 			else {
-			//Cannot make slice any bigger
-			if(slice.M >= min && slice.T >= min) {
-				for(Point p : tmpRandomList)
-					removeIndexFromRandom(findIndex(twoToOne(p)));
-				pizza.slices.add(slice);
-			} else {
-				clearSlice(slice);
-				slice = null;
+				//Cannot make slice any bigger
+				if(slice.M >= min && slice.T >= min) {
+					for(Point p : tmpRandomList)
+						removeIndexFromRandom(findIndex(twoToOne(p)));
+					pizza.slices.add(slice);
+				} else {
+					clearSlice(slice);
+					slice = null;
+				}
+				tmpRandomList.clear();
+				shouldContinue = false;
 			}
-			tmpRandomList.clear();
-			shouldContinue = false;
-		}
 			
+			//boolean canAddPiece = false;
 //			canAddPiece = addRowUp(slice) || canAddPiece ;
 //			canAddPiece = addRowDown(slice) || canAddPiece;
 //			canAddPiece = addColumnRight(slice) || canAddPiece;
