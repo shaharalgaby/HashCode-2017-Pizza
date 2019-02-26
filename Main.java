@@ -33,6 +33,8 @@ public class Main {
 	static ArrayList<Point> tmpRandomList;
 	
 	public static void main(String[] args) {
+		
+		//Handle the input
 		File file = new File(System.getProperty("user.home") + "/Desktop/hashcode/d_big.in");
 		Scanner scan = null;
 		try {
